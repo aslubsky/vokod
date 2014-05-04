@@ -1,0 +1,7 @@
+<div class="form-group   has-feedback">
+    <label class="control-label" for="datepicker"></label>
+    <input class="form-control" ng-model="params.filter()[name]" id="datepicker" value="{{params.filter()[name][0] + ' ~ ' + params.filter()[name][1]}}" format="YYYY-MM-DD" separator=" ~ " date-range-picker>
+    <span data-ng-click="clearFilters('datepicker')" class="glyphicon glyphicon-remove form-control-feedback datepicker-clear-button"></span>
+</div>
+
+

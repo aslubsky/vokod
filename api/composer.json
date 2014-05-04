@@ -1,0 +1,29 @@
+{
+    "name": "vokod",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Alex Slubsky",
+            "email": "aslubsky@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Modules": "src"
+        }
+    },
+    "require": {
+        "analog/analog": "dev-master",
+        "bazalt/core": "dev-master",
+        "firebase/php-jwt": "dev-master",
+        "bazalt/orm": "dev-master",
+        "bazalt/session": "dev-master",
+        "bazalt/data": "dev-master",
+        "bazalt/site": "dev-master",
+        "bazalt/auth": "dev-master",
+        "bazalt/rest": "dev-master",
+        "filp/whoops": "1.0.7"
+    },
+    "require-dev": {
+    }
+}

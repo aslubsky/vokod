@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{'План курса'|translate}}
+        <!--span ng-if="task.parent && task.parent.plan_percent_complete">{{task.parent.plan_percent_complete}}%</span>
+        <span ng-if="task.parent && task.parent.plan_percent_complete < 100"><i class="fa fa-flag"></i></span>
+        <span ng-if="task.parent && task.parent.plan_percent_complete >= 100"><i class="green fa fa-check"></i></span-->
+    </div>
+    <div class="list-group">
+        <a href="/courses/execute/{{task.parent_id}}?start_page=false{{mode ? '&mode='+mode : ''}}" class="list-group-item" ng-class="{'active': startPage }">{{'Старт'|translate}}</a>
+        <a class="list-group-item"
+           ng-class="{'active': subTask.id == task.id,
+           'list-group-item-success': subTask.is_success,
+           'list-group-item-danger': !subTask.is_success && subTask.status == 'finished',
+           'list-group-item-warning': !subTask.is_success && (subTask.status && subTask.status != 'finished')
+           }"
+           ng-repeat="subTask in task.plan"
+           ng-if="subTask.type == 'resource' || subTask.type == 'test'" class="{{subTask.status}}"
+            ng-href="{{subTask.can_execute == false ? '' :  subTask.type == 'resource' ? '/pages/execute/'+subTask.id : '/tests/execute/'+subTask.id }}{{mode ? '?mode='+mode : ''}}">
+            <!--span ng-if="subTask.status && subTask.status != 'finished' && subTask.status != 'fail'"><i class="fa fa-flag"></i></span>
+            <span ng-if="subTask.status == 'finished' || subTask.status == 'fail'"><i class="green fa fa-check"></i></span-->
+            <span title="{{'Осталось попыток'|translate}}" class="badge badge-success" ng-if="subTask.attempts_limit">{{(subTask.attempts_limit - subTask.attempts_count)}}</span>
+            {{subTask.title}}
+        </a>
+        <a href="/courses/finish/{{task.parent_id}}" class="list-group-item" ng-class="{'active': pageFinish}">{{'Финиш'|translate}}</a>
+    </div>
+</div>
