@@ -56,6 +56,49 @@ class JournalsResource extends \Bazalt\Rest\Resource
     }
 
     /**
+     * @method GET
+     * @action getReport
+     * @json
+     */
+    public function getReport()
+    {
+//        $curUser = \Bazalt\Auth::getUser();
+//        if (!$curUser->hasPermission('courses.can_manage_courses')) {
+//            return new Response(Response::FORBIDDEN, 'Permission denied');
+//        }
+        $data = Validator::create($_GET);
+        $data->field('year')->required();
+        $data->field('quarter')->required();
+        if (!$data->validate()) {
+            return new Response(400, $data->errors());
+        }
+
+        $categories = Category::getCollection()->fetchAll();
+        $doctors = Doctor::getCollection()->fetchAll();
+
+
+        $collection = Journal::getReport($data['year'], $data['quarter']);
+//        $collection = Journal::getCollection('2014-05-01');
+        $res = [
+            'data' => []
+        ];
+        $data = $collection->fetchAll();
+        $dataArr = [];
+        foreach($data as $item) {
+            $dataArr[$item->category_id.'_'.$item->doctor_id] = (int)$item->count;
+        }
+
+        foreach($categories as $category) {
+            foreach($doctors as $doctor) {
+                $res['data'][$category->id.'_'.$doctor->id] =
+                    isset($dataArr[$category->id.'_'.$doctor->id]) ? $dataArr[$category->id.'_'.$doctor->id] : 0;
+            }
+        }
+
+        return new Response(Response::OK, $res);
+    }
+
+    /**
      * @method POST
      * @method PUT
      * @json

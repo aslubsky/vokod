@@ -8,7 +8,7 @@ define(['app'], function (app) {
                 page: 1,            // show first page
                 count: 10,          // count per page
                 sorting: {
-                    id: 'desc'
+                    id: 'asc'
                 },
                 filter: {}
 

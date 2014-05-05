@@ -1,12 +1,14 @@
 define([
     'app',
     'base/controllers/MainCtrl',
+    'base/controllers/ReportCtrl',
     'base/controllers/DoctorsCtrl',
     'base/controllers/CategoriesCtrl',
     'base/factories/doctorsFactory',
     'base/factories/journalsFactory',
     'base/factories/categoriesFactory',
     'base/directives/bzConfirm',
+    'base/directives/exportExcel',
     'base/directives/bzDatepicker'
     /*'base/directives/dropdownMenu',
      'base/directives/bzDatepicker',
@@ -45,6 +47,16 @@ define([
                     resolve: {
                     },
                     controller: 'Dashboard.CategoriesCtrl',
+                    resolveFailed: config.errorResolver()
+                });
+
+            $routeSegmentProvider
+                .when('/report', 'report')
+                .segment('report', {
+                    templateUrl: '/themes/default/views/report.html',
+                    resolve: {
+                    },
+                    controller: 'Dashboard.ReportCtrl',
                     resolveFailed: config.errorResolver()
                 });
 
