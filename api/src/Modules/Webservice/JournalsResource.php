@@ -46,10 +46,13 @@ class JournalsResource extends \Bazalt\Rest\Resource
         }
 
         foreach($categories as $category) {
+            $sum = 0;
             foreach($doctors as $doctor) {
                 $res['data'][$category->id.'_'.$doctor->id] =
                     isset($dataArr[$category->id.'_'.$doctor->id]) ? $dataArr[$category->id.'_'.$doctor->id] : 0;
+                $sum += $res['data'][$category->id.'_'.$doctor->id];
             }
+            $res['data'][$category->id.'_sum'] = $sum;
         }
 
         return new Response(Response::OK, $res);
@@ -89,10 +92,13 @@ class JournalsResource extends \Bazalt\Rest\Resource
         }
 
         foreach($categories as $category) {
+            $sum = 0;
             foreach($doctors as $doctor) {
                 $res['data'][$category->id.'_'.$doctor->id] =
                     isset($dataArr[$category->id.'_'.$doctor->id]) ? $dataArr[$category->id.'_'.$doctor->id] : 0;
+                $sum += $res['data'][$category->id.'_'.$doctor->id];
             }
+            $res['data'][$category->id.'_sum'] = $sum;
         }
 
         return new Response(Response::OK, $res);
