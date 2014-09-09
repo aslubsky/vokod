@@ -12,23 +12,23 @@ class Journal extends Base\Journal
         return new \Bazalt\ORM\Collection($q);
     }
 
-    public static function getReport($year, $quarter)
+    public static function getReport($year, $month)
     {
-        switch($quarter) {
-            case 1:
+        switch($month) {
+            case 3:
                 $dateBegin = $year.'-01-01';
                 $dateEnd = $year.'-03-31';
             break;
-            case 2:
-                $dateBegin = $year.'-04-01';
+            case 6:
+                $dateBegin = $year.'-01-01';
                 $dateEnd = $year.'-06-30';
             break;
-            case 3:
-                $dateBegin = $year.'-07-01';
+            case 9:
+                $dateBegin = $year.'-01-01';
                 $dateEnd = $year.'-09-30';
             break;
-            case 4:
-                $dateBegin = $year.'-10-01';
+            case 12:
+                $dateBegin = $year.'-01-01';
                 $dateEnd = $year.'-12-31';
             break;
         }

@@ -12,7 +12,7 @@ define(['app'], function (app) {
             $scope.$watch('date', function(){
                 journalsFactory.get({date: $scope.date}, function (res) {
                     $scope.journals = res.data;
-                    console.log($scope.journals);
+                    //console.log($scope.journals);
                     $scope.loading = false;
                     $scope.needSave = false;
                 });

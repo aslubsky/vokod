@@ -71,7 +71,7 @@ class JournalsResource extends \Bazalt\Rest\Resource
 //        }
         $data = Validator::create($_GET);
         $data->field('year')->required();
-        $data->field('quarter')->required();
+        $data->field('month')->required();
         if (!$data->validate()) {
             return new Response(400, $data->errors());
         }
@@ -80,7 +80,7 @@ class JournalsResource extends \Bazalt\Rest\Resource
         $doctors = Doctor::getCollection()->fetchAll();
 
 
-        $collection = Journal::getReport($data['year'], $data['quarter']);
+        $collection = Journal::getReport($data['year'], $data['month']);
 //        $collection = Journal::getCollection('2014-05-01');
         $res = [
             'data' => []
